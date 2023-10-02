@@ -16,8 +16,14 @@ Travel Trekker is result of a small project from an university subject on Web De
 To get started with Travel Trekker, follow these steps:
 
 1. Start your git repo running `git init`.
-2. Clone the repository to your local machine using `git clone`.
-3. Install the necessary dependencies by running `npm install`.
+2. Clone the repository to your local machine using:
+```bash 
+git clone https://github.com/marcelomeloo/travel-trekker-backend.
+```
+3. Install the necessary dependencies by running:
+```bash
+npm install
+```
 4. Set up your environment variables using a `.env` file.
 5. For VSCode, install Live Server extension
 
