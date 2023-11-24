@@ -37,6 +37,6 @@ You can start the server using the following command:
 npm run dev
 ```
 
-### Running static page
+### Running page
 
-Open index.html with Live Server
+Open http://localhost:3000/ on your browser
