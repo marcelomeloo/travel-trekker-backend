@@ -16,11 +16,16 @@ const authenticate = async () => {
 }
 
 export const searchFlights = async (params) => {
-  const token = await authenticate();
-  const headers = { 'Authorization': `Bearer ${token}` }
-  const { data } = await axios.get(
-    `${process.env.AMADEUS_BASE_URL}/shopping/flight-offers`,
-    { params, headers }
-  )
-  return data;
+  try {
+    const token = await authenticate();
+    const headers = { 'Authorization': `Bearer ${token}` }
+    const { data } = await axios.get(
+      `${process.env.AMADEUS_BASE_URL}/shopping/flight-offers`,
+      { params, headers }
+      )
+    return data;
+  } catch (error) {
+    if (error.cause) console.log(error);
+    throw new Error("Erro com a API do amadeus");
+  }
 }

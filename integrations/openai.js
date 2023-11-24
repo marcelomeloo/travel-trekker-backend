@@ -10,12 +10,11 @@ const configuration = {
 export const makeItinerary = async (city, departure, comeback) => {
   const dt_departure = DateTime.fromJSDate(new Date(departure));
   const dt_comeback = DateTime.fromJSDate(new Date(comeback));
-  const days = dt_comeback.diff(dt_departure, 'days').days;
 
   const content = `
   Crie um itinerário resumido para uma viagem em ${city}
-  em dezembro durando ${days} dias que o texto de output possa ser
-  usado em um site de viagens
+  indo ${dt_departure.toISODate()}, voltando ${dt_comeback.toISODate()}
+  e que o texto de output possa ser usado em um site de viagens
   `;
 
   const openai = new OpenAIApi(configuration);
@@ -27,5 +26,6 @@ export const makeItinerary = async (city, departure, comeback) => {
     }]
   });
   
-  console.log(response.data);
+  console.log(response.choices[0].message.content.replace(/\n/g, ""));
+  return response.choices[0].message.content.replace(/(\r\n|\n|\r)/gm, "<br>");
 }

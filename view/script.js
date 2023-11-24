@@ -1,4 +1,4 @@
-const url = "http://localhost:3000/flights";
+const url = "http://localhost:3000";
 
 const originInput = document.getElementById("origin-input");
 const originOptions = document.getElementById("origin-options");
@@ -13,6 +13,8 @@ const adultsInput = document.getElementById("adults-input");
 const childrenInput = document.getElementById("children-input");
 const infantsInput = document.getElementById("infants-input");
 const searchButton = document.getElementById("search-button");
+const flights = document.getElementById("flights");
+const itinerary = document.getElementById("itinerary");
 
 const reset = () => {
   originInput.value = "";
@@ -46,10 +48,10 @@ flightTypeSelect.addEventListener("change", () => {
     returnDate.classList.remove("d-none");
   }
 });
+
 searchButton.addEventListener("click", async () => {
   const returnDate = (flightTypeSelect.value === "one-way") ?
   null : returnDateInput.value;
-  // const gptResponse = await makeItinerary(destination, departureDate, returnDate);
   const params = {
     ...{
     originLocationCode: originInput.value,
@@ -63,8 +65,18 @@ searchButton.addEventListener("click", async () => {
     },
     ...(returnDate && { returnDate })
   }
-  const { data } = await axios.get(url, { params })
-  console.log(data)
+
+  const [
+    {data: itineraryResponse},
+    {data: flightsResponse}
+  ] = await Promise.all([
+    axios.get(`${url}/itinerary`, { params }),
+    axios.get(`${url}/flights`, { params })
+  ]);
+  // console.log(itineraryResponse);
+  console.log(flightsResponse);
+  flights.innerHTML = flightsResponse;
+  itinerary.innerHTML = itineraryResponse;
 });
 
 reset();
