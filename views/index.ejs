@@ -13,9 +13,12 @@
 </head>
 
 <body>
+  <!-- Navbar -->
   <%- include('components/navbar.ejs') %>
-  <div class="container-sm">
-    <div class="my-2 card">
+
+  <div class="container-sm my-4">
+    <!-- Locations Card -->
+    <div class="card border-0 shadow">
       <div class="card-body">
         <h5 class="card-title">Locations</h5>
         <div class="row">
@@ -24,8 +27,8 @@
               <label id="origin-label" for="origin-input" class="form-label">Origin</label>
               <div class="input-group">
                 <span class="input-group-text"><i class="bi-pin-map"></i> </span>
-                <input type="text" class="form-control" list="origin-options" id="origin-input" placeholder="Location"
-                  aria-describedby="origin-label" />
+                <input type="text" class="form-control" list="origin-options" id="origin-input"
+                  placeholder="Location" aria-describedby="origin-label" />
                 <datalist id="origin-options"></datalist>
               </div>
             </div>
@@ -44,9 +47,11 @@
         </div>
       </div>
     </div>
-    <div class="row">
+
+    <!-- Dates and Details Cards -->
+    <div class="row mt-4">
       <div class="mb-2 col">
-        <div class="h-100 card">
+        <div class="card border-0 shadow">
           <div class="card-body">
             <h5 class="card-title">Dates</h5>
             <div class="mb-2">
@@ -68,14 +73,15 @@
               <label id="return-date-label" for="return-date-input" class="form-label">Return date</label>
               <div class="input-group">
                 <span class="input-group-text"><i class="bi-calendar-fill"></i> </span>
-                <input type="date" class="form-control" id="return-date-input" aria-describedby="return-date-label" />
+                <input type="date" class="form-control" id="return-date-input"
+                  aria-describedby="return-date-label" />
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="mb-2 col">
-        <div class="h-100 card">
+        <div class="card border-0 shadow">
           <div class="card-body">
             <h5 class="card-title">Details</h5>
             <div class="mb-2">
@@ -114,22 +120,30 @@
         </div>
       </div>
     </div>
-    <button id="search-button" class="w-100 btn btn-primary">
+
+    <!-- Search Button -->
+    <button id="search-button" class="w-100 btn btn-primary mt-4">
       Search
     </button>
-    <div class="my-2 card">
+
+    <!-- Results Card -->
+    <div class="my-2 card border-0 shadow">
       <div class="card-body">
         <h5 class="card-title">Results</h5>
         <div id="results"></div>
       </div>
     </div>
-    <div class="my-2 card">
+
+    <!-- Itinerary Card -->
+    <div class="my-2 card border-0 shadow">
       <div class="card-body">
         <h5 class="card-title">Itinerary</h5>
         <div id="itinerary"></div>
       </div>
     </div>
   </div>
+
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="../public/script.js"></script>
 </body>
