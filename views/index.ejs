@@ -262,8 +262,8 @@
                     <p class="card-text">
                       <small class="text-muted"
                         ><%= [flight.departureTime.split('T')[1],
-                        flight.departureTime.split('T')[0]].join(' ') %> &#8594; <%=
-                        [flight.arrivalTime.split('T')[1],
+                        flight.departureTime.split('T')[0]].join(' ') %> &#8594;
+                        <%= [flight.arrivalTime.split('T')[1],
                         flight.arrivalTime.split('T')[0]].join(' ') %> | <%=
                         flight.duration.slice(2) %></small
                       >
@@ -299,8 +299,8 @@
           <h5 class="card-title">Itinerary</h5>
           <div id="itinerary">
             <p class="card-text">
-              <%- itinerary ? itinerary.replace(/(\r\n|\n|\r)/gm, '<br />') : ''
-              %>
+              <%- itinerary ? itinerary.replace(/(\r\n|\n|\r)/gm, '<br />').replace("*",
+              "") : '' %>
             </p>
           </div>
         </div>

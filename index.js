@@ -4,6 +4,7 @@ import "dotenv/config";
 import passport from "passport";
 import session from "express-session";
 import { OAuth2Strategy as GoogleStrategy } from "passport-google-oauth";
+import helmet from "helmet";
 
 import { searchFlights } from "./integrations/amadeus.js";
 import { makeItinerary } from "./integrations/openai.js";
@@ -13,6 +14,11 @@ const app = express();
 const port = 3000;
 
 app.use(cors());
+
+/* Security */
+app.use(helmet());
+app.use(helmet({ csrf: true }));
+app.use(helmet.frameguard({ action: 'deny' }));
 
 /* Front and static files */
 
@@ -134,7 +140,7 @@ app.get("/itinerary", isLoggedIn, async (req, res) => {
 let userProfile;
 
 app.get("/success", isLoggedIn, (req, res) => {
-  const nonce = 'G/PJ/qRxP9nptavwLV4xGg=='
+  const nonce = "G/PJ/qRxP9nptavwLV4xGg==";
   res
     .setHeader("Content-Security-Policy", `script-src 'nonce-${nonce}'`)
     .status(200)
