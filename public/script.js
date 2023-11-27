@@ -49,34 +49,34 @@ flightTypeSelect.addEventListener("change", () => {
   }
 });
 
-searchButton.addEventListener("click", async () => {
-  const returnDate = (flightTypeSelect.value === "one-way") ?
-  null : returnDateInput.value;
-  const params = {
-    ...{
-    originLocationCode: originInput.value,
-    destinationLocationCode: destinationInput.value,
-    departureDate: departureDateInput.value,
-    travelClass: travelClassSelect.value,
-    adults: adultsInput.value,
-    nonStop: false,
-    currencyCode: 'BRL',
-    max: 5
-    },
-    ...(returnDate && { returnDate })
-  }
+// searchButton.addEventListener("click", async () => {
+//   const returnDate = (flightTypeSelect.value === "one-way") ?
+//   null : returnDateInput.value;
+//   const params = {
+//     ...{
+//     originLocationCode: originInput.value,
+//     destinationLocationCode: destinationInput.value,
+//     departureDate: departureDateInput.value,
+//     travelClass: travelClassSelect.value,
+//     adults: adultsInput.value,
+//     nonStop: false,
+//     currencyCode: 'BRL',
+//     max: 5
+//     },
+//     ...(returnDate && { returnDate })
+//   }
 
-  const [
-    {data: itineraryResponse},
-    {data: flightsResponse}
-  ] = await Promise.all([
-    axios.get(`${url}/itinerary`, { params }),
-    axios.get(`${url}/flights`, { params })
-  ]);
-  // console.log(itineraryResponse);
-  console.log(flightsResponse);
-  flights.innerHTML = flightsResponse;
-  itinerary.innerHTML = itineraryResponse;
-});
+//   const [
+//     {data: itineraryResponse},
+//     {data: flightsResponse}
+//   ] = await Promise.all([
+//     axios.get(`${url}/itinerary`, { params }),
+//     axios.get(`${url}/flights`, { params })
+//   ]);
+//   // console.log(itineraryResponse);
+//   console.log(flightsResponse);
+//   flights.innerHTML = flightsResponse;
+//   itinerary.innerHTML = itineraryResponse;
+// });
 
 reset();
